@@ -11,18 +11,18 @@ def print_menu():
         4. Exit
         
         """)
-
-def add_expense():
-    date = input("Enter the date: (YYYY-MM-DD): ") 
-    description = str(input("Enter the Description: "))
-    amount = float(input("Enter the amount: "))
-    expenses.append({'date': date, 'description': description, 'amount': amount})
-    print("Expense added!\n")   
+        
+def add_expense(date,description,amount):
+    while amount <= 0:
+        print('invalid input')
+        amount = float(input("Enter the amount: "))
+        expenses.append({'amount': amount})
+        print("Expense added!\n")              
       
 def view_expenses():
     print("Expenses: ")
     for expense in expenses:
-        print(f"Date: {expense['date']}, Description: {expense['description']}, Amount: {expense['amount']}")
+        print(f"Date: {expense['date']}, description: {expense['description']}, amount: {expense['amount']}")  
     if not expenses:
         print("No expenses recorded yet.\n")
             
@@ -30,20 +30,31 @@ def calculate_expenses():
     total = sum(expense['amount'] for expense in expenses)
     print(f"Total Expenses: {total}\n")
     
-    
+def exit_app():
+    print(" EXITING THE APP. GOODBYE! ")  
+
 def main():
     print_menu()
     while True:
         print("")
         choice = int(input("enter your choice (1/2/3/4): "))
         if choice == 1:
-            add_expense()
+            date = input("Enter the date: (YYYY-MM-DD): ") 
+            description = input("Enter the Description: ")
+            amount = float(input("Enter the amount: "))
+            while amount <= 0:
+                print('invalid input')
+                amount = float(input("Enter the amount: "))
+            expenses.append({'date': date, 'description': description, 'amount': amount})
+            print("Expense added!\n")
+            add_expense(date,description,amount)            
+      
         elif choice == 2:
             view_expenses()
         elif choice == 3:
-            calculate_expenses()
+            calculate_expenses()                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
         elif choice == 4:
-            print(" EXITING THE APP. GOODBYE! ")
+            exit_app()
             break
         else:
             print("Invalid choice. please try again.")
