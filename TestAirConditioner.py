@@ -13,7 +13,7 @@ class TestAirConditioner(unittest.TestCase):
         result = False
         self.assertEqual(expected, result)    
 
-    def test_ac_can_increase(self):
+    def test_temperature_can_increase(self):
         AirConditioner.TurnOn()
         Temperature = 16
         AirConditioner.Increase(Temperature)
@@ -29,7 +29,7 @@ class TestAirConditioner(unittest.TestCase):
         expected = AirConditioner.Decrease(Temperature)
         self.assertEqual(expected, result) 
 
-    def test_ac_cannot_decrease_below_sixteen(self):
+    def test_temperature_cannot_decrease_below_sixteen(self):
         AirConditioner.TurnOn()
         Temperature = 16
         AirConditioner.Decrease(Temperature)
